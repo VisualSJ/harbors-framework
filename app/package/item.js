@@ -46,24 +46,25 @@ class Package {
     }
 
     // 控制台信息
-    log () {}
+    log (msg, ...args) {
+        Console.log(`[${this[CONFIG].name}] ${msg}`, ...args);
+    }
     info () {}
     warn () {}
     error () {}
 
-    // 收发消息
+    // 监听消息
     listen (msg, ...args) {
         msg = msg.replace(/^\//, '');
         var name = this[CONFIG].name;
         Message.on(name + '://' + msg, ...args);
     }
-    send () {}
 }
 
 var getConfig = function (path) {
 
     var info = {
-        'name': 'framework-test',
+        'name': 'unknown',
         'version': '0.0.1',
         'main': 'main.js'
     };

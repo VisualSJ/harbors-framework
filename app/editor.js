@@ -22,3 +22,19 @@ exports.emit = function (...args) {
 App.on('ready', function (...args) {
     exports.emit('ready', ...args);
 });
+
+var packageManager = require('./package');
+var pkgMessage = require('./package/message');
+exports.send = function (url, ...args) {
+    var split = url.split('://');
+    var protocol = split[0];
+    var msg = split[1];
+
+    if (protocol === 'all') {
+        return packageManager.forEach(function (pkg) {
+            pkgMessage.emit(pkg.name + '://' + msg, ...args);
+        });
+    }
+
+    pkgMessage.emit(url, ...args);
+};

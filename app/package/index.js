@@ -4,31 +4,22 @@ const Item = require('./item');
 
 const Console = require('../console');
 
-var  searchPath = [];
-
 var instanceId = 0;
 
 var packages = {};
 var name2id = {};
 var path2id = {};
 
-exports.addSearchPath = function (path) {
-    var array = searchPath;
-    if (array.indexOf(path) === -1){
-        array.push(path);
-    }
+exports.getPackage = function (name) {
+    var id = name2id[name];
+    return packages[id];
 };
 
-exports.removeSearchPath = function (path) {
-    var array = searchPath;
-    var index = array.indexOf(path);
-    if (index !== -1) {
-        array.splice(index, 1);
-    }
-};
-
-exports.clearSearchPath = function () {
-    searchPath.length = 0;
+exports.forEach = function (callback) {
+    var keys = Object.keys(packages);
+    keys.forEach(function (id) {
+        callback(packages[id]);
+    });
 };
 
 exports.load = function (path) {
