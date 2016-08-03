@@ -30,10 +30,16 @@ class Dock {
     set resize (bool) {}
 
     get width () {}
-    set width (num) {}
+    set width (str) {
+        this.element['style']['min-width'] = str;
+        this.element['style']['max-width'] = str;
+    }
 
     get height () {}
-    set height (num) {}
+    set height (str) {
+        this.element['style']['min-height'] = str;
+        this.element['style']['max-height'] = str;
+    }
 
     get flex () {}
     set flex (num) {

@@ -32,21 +32,24 @@ var openWindow = function (url, options, callback) {
     win.webContents.on('did-finish-load', () => {
         Console.debug('Editor.Window ready.');
         callback();
-        // win.webContents.send('init-layout', layout);
     });
     return win;
 };
 
 exports.startup = function (callback) {
     if (main) return Console.error('Editor.Windows has already started.');
-    main = openWindow('./page/main.html', null, callback);
+    return main = openWindow('./page/main.html', null, callback);
 };
 
 exports.open = function () {
     if (!main) Console.error('Editor.Window not ready yet.');
-    openWindow();
+    return openWindow();
 };
 
 exports.clear = function () {
     
+};
+
+exports.getMainWindow = function () {
+    return main;
 };

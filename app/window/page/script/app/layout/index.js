@@ -13,9 +13,14 @@ exports.restore = function () {
 };
 
 exports.refresh = function (json) {
-    json = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, './layout.json')) + '');
-
     var dock = Parser.parse(json);
     dock.mount(Container);
-    console.log(dock);
 };
+
+
+const Electron = require('electron');
+const Ipc = Electron.ipcRenderer;
+
+Ipc.on('refresh-layout', function (event, json) {
+    exports.refresh(json);
+});

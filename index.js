@@ -11,9 +11,9 @@ exports.run = function () {
     var electronPath = Path.join(__dirname, './node_modules/electron-prebuilt/dist/electron.exe');
     var appPath = Path.join(__dirname, './app');
 
-    var child = ChildProcess.exec(`start ${electronPath} ${appPath}`, function (error, stdout, stderr) {
-
+    ChildProcess.spawn(electronPath, [appPath], {
+        cwd: __dirname,
+        env: process.env,
+        stdio: 'inherit'
     });
-
-    // todo
 };
