@@ -20,7 +20,7 @@ exports.emit = function (...args) {
 };
 
 App.on('ready', function (...args) {
-    exports.emit('ready', ...args);
+    exports.emit('electron-ready', ...args);
 });
 
 var packageManager = require('./package');

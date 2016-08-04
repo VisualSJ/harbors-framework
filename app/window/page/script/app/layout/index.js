@@ -21,6 +21,6 @@ exports.refresh = function (json) {
 const Electron = require('electron');
 const Ipc = Electron.ipcRenderer;
 
-Ipc.on('refresh-layout', function (event, json) {
+Ipc.on('layout/refresh', function (event, json) {
     exports.refresh(json);
 });

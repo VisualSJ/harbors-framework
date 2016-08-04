@@ -29,10 +29,7 @@ var openWindow = function (url, options, callback) {
     win.loadURL(url);
     win.show();
 
-    win.webContents.on('did-finish-load', () => {
-        Console.debug('Editor.Window ready.');
-        callback();
-    });
+    win.webContents.once('did-finish-load', callback);
     return win;
 };
 

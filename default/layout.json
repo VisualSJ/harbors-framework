@@ -1,0 +1,38 @@
+{
+  "type": "dock",
+  "options": {
+    "direction": "column"
+  },
+  "children": [
+    {
+      "type": "dock",
+      "options": {
+        "direction": "row",
+        "flex": 100
+      },
+      "children": [
+        {
+          "type": "block",
+          "tab": "top",
+          "options": {},
+          "panels": ["tester"]
+        }
+      ]
+    },
+    {
+      "type": "dock",
+      "options": {
+        "direction": "column",
+        "height": "26px"
+      },
+      "children": [
+        {
+          "type": "block",
+          "tab": "none",
+          "options": {},
+          "panels": ["editor"]
+        }
+      ]
+    }
+  ]
+}

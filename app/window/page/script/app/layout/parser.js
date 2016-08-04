@@ -62,6 +62,9 @@ class Block {
         this.parent = null;
         this.element = document.createElement('div');
         this.element.classList.add('block');
+
+        this.iframe = document.createElement('iframe');
+        this.element.appendChild(this.iframe);
     }
 
     get minHeight () {}
@@ -124,6 +127,9 @@ var parseBlock = function (json) {
     block.width = options.width;
     block.height = options.height;
     block.flex = options.flex;
+
+    // todo remove hack code
+    block.iframe.src = Editor.remote.Panel.getUrl(json.panels[0]);
     return block;
 };
 

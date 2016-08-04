@@ -1,19 +1,15 @@
 'use strict';
 
-const Path = require('path');
-const ChildProcess = require('child_process');
+var Fs = require('fs');
+var Path = require('path');
+var Editor = require('./app');
 
-exports.options = function () {
+Editor.once('ready', function () {
+    Editor.Console.debug('Editor ready');
+    var file = Path.join(__dirname, './default/layout.json');
+    var buffer = Fs.readFileSync(file);
+    var string = buffer + '';
+    var json = JSON.parse(string);
 
-};
-
-exports.run = function () {
-    var electronPath = Path.join(__dirname, './node_modules/electron-prebuilt/dist/electron.exe');
-    var appPath = Path.join(__dirname, './app');
-
-    ChildProcess.spawn(electronPath, [appPath], {
-        cwd: __dirname,
-        env: process.env,
-        stdio: 'inherit'
-    });
-};
+    Editor.send('window://layout/init', json);
+});
